@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Daftar Mahasiswa{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Daftar Mahasiswa</h1>
+  <div class="toolbar">
+    <a class="btn" href="{{ url_for('tambah') }}">+ Tambah Mahasiswa</a>
+    <form method="get" action="{{ url_for('index') }}">
+      <input type="search" name="q" value="{{ q }}" placeholder="Cari NIM / nama / prodi">
+      <button class="btn btn-gray" type="submit">Cari</button>
+    </form>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>NIM</th><th>Nama</th><th>Program Studi</th>
+        <th>Angkatan</th><th>IPK</th><th>Lama Studi</th><th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in mahasiswa %}
+      <tr>
+        <td>{{ m.nim }}</td>
+        <td>{{ m.nama }}</td>
+        <td>{{ m.program_studi }}</td>
+        <td>{{ m.angkatan }}</td>
+        <td>{{ "%.2f"|format(m.ipk) }}</td>
+        <td>{{ m.lama_studi }} tahun</td>
+        <td>
+          <div class="actions">
+            <a class="btn btn-sm btn-gray" href="{{ url_for('detail', nim=m.nim) }}">Detail</a>
+            <a class="btn btn-sm" href="{{ url_for('edit', nim=m.nim) }}">Edit</a>
+            <form method="post" action="{{ url_for('hapus', nim=m.nim) }}"
+                  onsubmit="return confirm('Hapus mahasiswa {{ m.nama|e }} (NIM {{ m.nim }})?');">
+              <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" class="empty">Belum ada data mahasiswa.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
