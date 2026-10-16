@@ -7,7 +7,7 @@ Aplikasi web sederhana untuk mengelola data mahasiswa (Create, Read, Update, Del
 ## Teknologi
 - Backend: Python + Flask
 - Database: SQLite (file `mahasiswa.db`, dibuat otomatis saat pertama dijalankan)
-- Frontend: HTML + form (Jinja2 templates)
+- Frontend: HTML + form 
 
 ## Fitur
 - **Create** — tambah mahasiswa lewat form
@@ -37,7 +37,7 @@ Buka http://127.0.0.1:5000
 │   ├── index.html
 │   ├── form.html
 │   └── detail.html
-└── mahasiswa.db   (dibuat otomatis)
+└── mahasiswa.db 
 ```
 
 ## Skema Tabel `mahasiswa`
